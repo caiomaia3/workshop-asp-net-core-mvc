@@ -7,7 +7,6 @@ C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\bin\Debug\netcoreapp2.1\Sa
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\bin\Debug\netcoreapp2.1\SallesWebMVC.pdb
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\bin\Debug\netcoreapp2.1\SallesWebMVC.Views.dll
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\bin\Debug\netcoreapp2.1\SallesWebMVC.Views.pdb
-C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.csproj.AssemblyReference.cache
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.AssemblyInfoInputs.cache
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.AssemblyInfo.cs
