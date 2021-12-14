@@ -33,3 +33,5 @@ C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\Sa
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.pdb
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.genruntimeconfig.cache
 C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.csproj.CopyComplete
+C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\SallesWebMVC.csproj.AssemblyReference.cache
+C:\Users\caiom\source\repos\SallesWebMVC\SallesWebMVC\obj\Debug\netcoreapp2.1\Razor\Views\Departments\Index.cshtml.g.cs
