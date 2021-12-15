@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SallesWebMVC.Data;
+using SallesWebMVC.Services;
 
 namespace SallesWebMVC
 {
@@ -40,6 +41,7 @@ namespace SallesWebMVC
                     options.UseMySql(Configuration.GetConnectionString("SallesWebMVCContext"), builder =>
                         builder.MigrationsAssembly("SallesWebMVC")));
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
