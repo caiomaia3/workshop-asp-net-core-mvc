@@ -41,5 +41,23 @@ namespace SallesWebMVC.Controllers
             _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var sellerToDelete = _sellerService.FindById(id.Value);
+            if(sellerToDelete == null) return NotFound();
+
+            return View(sellerToDelete);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _sellerService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
