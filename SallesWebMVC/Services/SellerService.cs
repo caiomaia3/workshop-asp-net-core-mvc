@@ -37,9 +37,17 @@ namespace SallesWebMVC.Services
 
         public async Task RemoveAsync(int id)
         {
-            var sellerToRemove = await FindByIdAsync(id);
-            _context.Seller.Remove(sellerToRemove);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var sellerToRemove = await FindByIdAsync(id);
+                _context.Seller.Remove(sellerToRemove);
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
+
         }
 
         public async Task UpdateAsync(Seller seller)
