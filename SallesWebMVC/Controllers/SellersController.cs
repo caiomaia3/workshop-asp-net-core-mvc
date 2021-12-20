@@ -5,6 +5,7 @@ using SallesWebMVC.Services;
 using SallesWebMVC.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,10 +46,11 @@ namespace SallesWebMVC.Controllers
 
         public IActionResult Delete(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction(nameof(Error), new { message = "Id not provided!" });
 
             var sellerToDelete = _sellerService.FindById(id.Value);
-            if (sellerToDelete == null) return NotFound();
+            if (sellerToDelete == null) return RedirectToAction(nameof(Error), new { message = "Id not found!" });
+
 
             return View(sellerToDelete);
         }
@@ -63,19 +65,19 @@ namespace SallesWebMVC.Controllers
 
         public IActionResult Details(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction(nameof(Error), new { message = "Id not provided!" });
 
             var sellerToDetail = _sellerService.FindById(id.Value);
-            if (sellerToDetail == null) return NotFound();
+            if (sellerToDetail == null) return RedirectToAction(nameof(Error), new { message = "Id not found!" });
 
             return View(sellerToDetail);
         }
 
         public IActionResult Edit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null) return RedirectToAction(nameof(Error), new { message = "Id not provided!" });
             var sellerToEdit = _sellerService.FindById(id.Value);
-            if (sellerToEdit == null) return NotFound();
+            if (sellerToEdit == null) return RedirectToAction(nameof(Error), new { message = "Id not found!" });
 
             List<Department> departments = _departmentService.ListAll();
             SellerFormViewModel viewModel = new SellerFormViewModel() { Seller = sellerToEdit, Departments = departments };
@@ -90,21 +92,27 @@ namespace SallesWebMVC.Controllers
         {
             if(id != seller.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Id mismatch!" });
             }
             try
             {
                 _sellerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch(NotFoundException)
+            catch(ApplicationException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch(DbConcurrencyException)
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
             {
-                return BadRequest();
-            }
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
