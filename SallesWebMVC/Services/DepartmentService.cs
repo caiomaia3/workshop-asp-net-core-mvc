@@ -2,7 +2,8 @@
 using SallesWebMVC.Models;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SallesWebMVC.Services
 {
@@ -15,9 +16,9 @@ namespace SallesWebMVC.Services
             _context = context;
         }
 
-        public List<Department> ListAll()
+        public async Task<List<Department>> ListAllAsync()
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
         }
     }
 }
