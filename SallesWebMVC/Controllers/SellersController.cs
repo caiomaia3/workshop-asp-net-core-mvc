@@ -2,6 +2,7 @@
 using SallesWebMVC.Models;
 using SallesWebMVC.Models.ViewModels;
 using SallesWebMVC.Services;
+using SallesWebMVC.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace SallesWebMVC.Controllers
             if (id == null) return NotFound();
 
             var sellerToDelete = _sellerService.FindById(id.Value);
-            if(sellerToDelete == null) return NotFound();
+            if (sellerToDelete == null) return NotFound();
 
             return View(sellerToDelete);
         }
@@ -68,6 +69,42 @@ namespace SallesWebMVC.Controllers
             if (sellerToDetail == null) return NotFound();
 
             return View(sellerToDetail);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var sellerToEdit = _sellerService.FindById(id.Value);
+            if (sellerToEdit == null) return NotFound();
+
+            List<Department> departments = _departmentService.ListAll();
+            SellerFormViewModel viewModel = new SellerFormViewModel() { Seller = sellerToEdit, Departments = departments };
+
+            return View(viewModel);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Seller seller)
+        {
+            if(id != seller.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _sellerService.Update(seller);
+                return RedirectToAction(nameof(Index));
+            }
+            catch(NotFoundException)
+            {
+                return NotFound();
+            }
+            catch(DbConcurrencyException)
+            {
+                return BadRequest();
+            }
         }
     }
 }

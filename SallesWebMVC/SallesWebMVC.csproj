@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Sellers\Edit.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-flatly.css" />
   </ItemGroup>
 

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using SallesWebMVC.Data;
 using SallesWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
+using SallesWebMVC.Services.Exceptions;
 
 namespace SallesWebMVC.Services
 {
@@ -39,6 +38,26 @@ namespace SallesWebMVC.Services
             var sellerToRemove = FindById(id);
             _context.Seller.Remove(sellerToRemove);
             _context.SaveChanges();
+        }
+
+        public void Update(Seller seller)
+        {
+            bool IdIsValid = _context.Seller.Any(x => x.Id == seller.Id);
+
+            if(!IdIsValid)
+            {
+                throw new NotFoundException("Id not found!");
+            }
+            try
+            {
+                _context.Update(seller);
+                _context.SaveChanges();
+            }
+            catch(DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
+
         }
     }
 
