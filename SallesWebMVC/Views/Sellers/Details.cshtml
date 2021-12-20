@@ -1,0 +1,50 @@
+﻿
+@model SallesWebMVC.Models.Seller
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+
+<div>
+    <h4>Seller</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(seller => seller.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(seller => seller.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(seller => seller.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(seller => seller.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(seller => seller.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(seller => seller.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(seller => seller.BaseSalary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(seller => seller.BaseSalary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(seller => seller.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(seller => seller.Department.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-default" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a asp-action="Index">Back to List</a>
+</div>
